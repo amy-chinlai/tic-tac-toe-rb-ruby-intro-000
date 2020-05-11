@@ -77,3 +77,30 @@ end
 def current_player(board)
   turn_count(board) % 2 == 0? "X": "O"
 end
+
+def won?(board)
+  winning_combination = WIN_COMBINATIONS.detect do |combination|
+    board[combination[0]] != " " && board[combination[0]] == board[combination[1]] && board[combination[1]] == board[combination[2]]
+end
+end
+
+def full?(board)
+  (board).none?{|i| i == " "}
+end
+
+def draw?(board)
+  full?(board) && !won?(board)
+  end
+
+def over?(board)
+  full?(board) || won?(board) || draw?(board)
+end
+
+def winner(board)
+  winning_combination = won?(board)
+  if winning_combination
+    board[winning_combination[0]]
+  else
+    nil
+  end
+end

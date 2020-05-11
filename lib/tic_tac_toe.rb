@@ -22,7 +22,7 @@ def input_to_index(input)
   input.to_i - 1
 end
 
-def move(board, index, value)
+def move(board, index, value="X")
   board[index] = value
 end
 
@@ -41,7 +41,18 @@ def valid_move?(board, index)
   !position_taken?(board, index) && index.between?(0,8)
 end
 
-def turn(board)
+  def position_taken?(board, index)
+    if board[index] == "" || board[index] == " " || board[index] == nil
+      false
+    elsif
+      board[index] == "X" || board[index] == "O"
+      true
+    else
+      nil
+    end
+  end
+
+	def turn(board)
     puts "Please enter 1-9:"
     input = gets.strip
     index = input_to_index(input)
@@ -50,54 +61,5 @@ def turn(board)
     display_board(board)
   else
     turn(board)
-  end
-end
-
-def play(board)
-  turn_count = 0
-  until turn_count >= 9
-    turn_count += 1
-    turn(board)
-  end
-end
-
-def turn_count(board)
-  turn=0
-  board.each do |token|
-    if(token=="X" || token=="O")
-      turn+=1
-end
-end
-turn
-end
-
-def current_player(board)
-  turn_count(board) % 2 == 0? "X": "O"
-end
-
-def won?(board)
-  winning_combination = WIN_COMBINATIONS.detect do |combination|
-    board[combination[0]] != " " && board[combination[0]] == board[combination[1]] && board[combination[1]] == board[combination[2]]
-end
-end
-
-def full?(board)
-  (board).none?{|i| i == " "}
-end
-
-def draw?(board)
-  full?(board) && !won?(board)
-  end
-
-def over?(board)
-  full?(board) || won?(board) || draw?(board)
-end
-
-def winner(board)
-  winning_combination = won?(board)
-  if winning_combination
-    board[winning_combination[0]]
-  else
-    nil
   end
 end

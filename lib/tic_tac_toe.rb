@@ -22,7 +22,7 @@ def input_to_index(input)
   input.to_i - 1
 end
 
-def move(board, index)
+def move(board, index, token)
   board[index] = value
 end
 

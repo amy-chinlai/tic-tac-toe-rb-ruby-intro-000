@@ -109,6 +109,7 @@ def play(board)
 	until over?(board)
 		turn(board)
 		turn_count(board)
+		play(board)
 	end
 	if won?(board)
 		if value = "X"

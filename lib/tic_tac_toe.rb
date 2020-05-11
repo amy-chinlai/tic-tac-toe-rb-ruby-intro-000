@@ -62,7 +62,6 @@ end
   else
     turn(board)
   end
-	play(board)
 end
 
 def turn_count(board)

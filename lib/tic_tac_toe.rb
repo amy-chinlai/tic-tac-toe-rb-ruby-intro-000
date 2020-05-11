@@ -113,7 +113,8 @@ def play(board)
 	if won?(board)
 		if value = "X"
 			puts "Congratulations X!"
-		else value = "O"
+		end 
+		if value = "O"
 			puts "congratulations O!"
 		end
 	else draw?(board)
